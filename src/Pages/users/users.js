@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PageTitle } from "../../component/pagetitle/pagetitle";
 import CustomerTable from "./table";
 import { withRouter } from 'react-router-dom';
-import { getCustomers, deleteCustomer, bulkCustomerDelete } from "./customer.ctrl";
+import { getCustomers, deleteCustomer, bulkCustomerDelete } from "./user.ctrl";
 import { connect } from 'react-redux';
 import { PaginationComp } from "../../utils/pagination";
 import { AlertNotification } from "../../component/uicomponent";

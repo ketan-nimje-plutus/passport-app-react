@@ -1,4 +1,4 @@
-import { LOAD_CUSTOMERS_LOADING, LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./customer.act";
+import { LOAD_CUSTOMERS_LOADING, LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./user.act";
 
 const initialState = {
     customers: null,

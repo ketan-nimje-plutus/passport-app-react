@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CustomButton } from "../../component/button";
-import { saveUserData, getItemData } from "./customer.ctrl";
+import { saveUserData, getItemData } from "./user.ctrl";
 import { FullWidthLoader } from "../../component/loader";
 
 

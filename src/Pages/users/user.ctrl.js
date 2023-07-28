@@ -1,5 +1,5 @@
 import { getData, deleteData, postData, putData } from "../../http/http.class";
-import { LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./customer.act";
+import { LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./user.act";
 
 export const getCustomers = (page, size, search) => {
     return dispatch => {
@@ -48,12 +48,4 @@ export const bulkCustomerDelete = async (payload) => {
     } else {
         return { success: false, data: res.data };
     }
-}
-
-export const editRecords = async (url, data) => {
-    return await putData(url, data);
-};
-
-export const getRecords = async (url) => {
-    return await getData(url, "");
 }

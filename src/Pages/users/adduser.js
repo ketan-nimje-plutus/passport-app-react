@@ -8,7 +8,7 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CustomButton } from "../../component/button";
-import { saveUserData } from "./customer.ctrl";
+import { saveUserData } from "./user.ctrl";
 import { isPrice } from "../../utils/basic";
 
 import ViewDisabled from "../../assets/images/ViewDisabled@2x.svg";
