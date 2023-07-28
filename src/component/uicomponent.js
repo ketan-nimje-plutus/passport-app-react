@@ -21,15 +21,15 @@ export const CustomDropdown = (props) => {
 
   return (
     <div className="showroom-dropdown position-relative">
-      <div className="dropdown-button c-pointer" onClick={() => {setToggle(!toggle);}}>
+      <div className="dropdown-button c-pointer" onClick={() => { setToggle(!toggle); }}>
         <span className="dropdown-value">
           {props.filter}
           <img src={DropDown} className="dropdown-arrow" alt="Icon" />
         </span>
       </div>
       <ul className={`${toggle ? `d-block` : "d-none"}`}>
-        {props.list.map((item, idx) => (          
-          <DropdownList key={idx} list={item}  onClick={() => onTdClick(item)} />          
+        {props.list.map((item, idx) => (
+          <DropdownList key={idx} list={item} onClick={() => onTdClick(item)} />
         ))}
       </ul>
     </div>
@@ -46,23 +46,23 @@ export const GrayBorderBox = (props) => {
     <div className="gray-border-box">
       {props.boxtitle && props.boxtitle.length > 0 ? (
         <h3 className="gray-box-title">{props.boxtitle}</h3>
-      ) 
-      : (
-        ""
-      )}
-      {props.btnupload ? (
-          <button  onClick={() => { props.previewlinkDisabled === false && props.onClick() }} type="button"  className={`custom-button custom-outline btn ${props.previewlinkDisabled ? `disabled-text` : `c-pointer`}`}>
-              <img src={IconUploadImages} className="upload-images" alt="placeholder" />
-              {props.previewlink}
-          </button>
-      ) : (
+      )
+        : (
           ""
+        )}
+      {props.btnupload ? (
+        <button onClick={() => { props.previewlinkDisabled === false && props.onClick() }} type="button" className={`custom-button custom-outline btn ${props.previewlinkDisabled ? `disabled-text` : `c-pointer`}`}>
+          <img src={IconUploadImages} className="upload-images" alt="placeholder" />
+          {props.previewlink}
+        </button>
+      ) : (
+        ""
       )}
       {props.children}
       <span className="gray-box-link mt-2 d-inline-block" {...props}>
         {props.linkname}
       </span>
-      
+
     </div>
   );
 };
@@ -273,8 +273,8 @@ export const StoreOrder = (props) => {
   return (
     <div className="d-flex align-items-center customer-order-detail flex-wrap">
       <img src={props.product_image
-              ? props.product_image
-              : OrderImage} className="order-image" alt="Order view" />
+        ? props.product_image
+        : OrderImage} className="order-image" alt="Order view" />
       <div className="customer-order d-flex align-items-center justify-content-between">
         <h4>{props.ordername}</h4>
         <span className="common-text">${props.ordervalue}</span>
@@ -327,54 +327,54 @@ export function ProductCategoryListing(props) {
                 </Accordion.Header>
               )}
               {(attribute.level === 0) ? (
-              <Accordion.Body
-                key={attribute.id}
-                className={`${attribute.visible === 1 ? `d-block` : `d-none`}`}
-              >
-                <div className={`sub-categories-views`}>
-                <div className="d-flex flex-wrap">
-                  {attribute.values.map((sub) => (
-                    <ShowroomProduct
-                      ProductName={sub.name}
-                      key={sub.id}
-                      selected={sub.selected}
-                      id={sub.id}
-                      onSave={props.onChange}
-                      parent={attribute.id}
-                      image={sub.image}
-                    // checked={sub.selected === 1 ? true : false}
-                    />
-                  ))}
-                </div>
-                </div>
-              </Accordion.Body>
-              ) : (
-              <Accordion.Body
-                key={attribute.id}
-                className={`${attribute.visible === 1 ? `d-block` : `d-none`}`}
-              >
-                <div className={`sub-categories-views`}>
-                <Accordion.Header className="preview_title">
-                  <h5 className="showroom-accordian-title mb-3">
-                    {attribute.name}
-                  </h5>
-                  </Accordion.Header>
-                  <div className="d-flex flex-wrap">
-                    {attribute.values.map((sub) => (
-                      <ShowroomProduct
-                        ProductName={sub.name}
-                        key={sub.id}
-                        selected={sub.selected}
-                        id={sub.id}
-                        onSave={props.onChange}
-                        parent={attribute.id}
-                        image={sub.image}
+                <Accordion.Body
+                  key={attribute.id}
+                  className={`${attribute.visible === 1 ? `d-block` : `d-none`}`}
+                >
+                  <div className={`sub-categories-views`}>
+                    <div className="d-flex flex-wrap">
+                      {attribute.values.map((sub) => (
+                        <ShowroomProduct
+                          ProductName={sub.name}
+                          key={sub.id}
+                          selected={sub.selected}
+                          id={sub.id}
+                          onSave={props.onChange}
+                          parent={attribute.id}
+                          image={sub.image}
                         // checked={sub.selected === 1 ? true : false}
-                      />
-                    ))}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </Accordion.Body>
+                </Accordion.Body>
+              ) : (
+                <Accordion.Body
+                  key={attribute.id}
+                  className={`${attribute.visible === 1 ? `d-block` : `d-none`}`}
+                >
+                  <div className={`sub-categories-views`}>
+                    <Accordion.Header className="preview_title">
+                      <h5 className="showroom-accordian-title mb-3">
+                        {attribute.name}
+                      </h5>
+                    </Accordion.Header>
+                    <div className="d-flex flex-wrap">
+                      {attribute.values.map((sub) => (
+                        <ShowroomProduct
+                          ProductName={sub.name}
+                          key={sub.id}
+                          selected={sub.selected}
+                          id={sub.id}
+                          onSave={props.onChange}
+                          parent={attribute.id}
+                          image={sub.image}
+                        // checked={sub.selected === 1 ? true : false}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </Accordion.Body>
               )}
             </React.Fragment>
           );
@@ -389,16 +389,16 @@ export const Chipset = (props) => {
   return (
     <span className="chip">
       {props.chipname}
-      <img src={CloseChip} className="c-pointer" alt="Close chip" onClick={() => props.deleteFont(props.chipid)}/>
+      <img src={CloseChip} className="c-pointer" alt="Close chip" onClick={() => props.deleteFont(props.chipid)} />
     </span>
   );
-}; 
+};
 
 export const CategoryChipset = (props) => {
   return (
     <span className="chip">
       {props.chipname}
-      <img src={CloseChip} className="c-pointer" alt="Close chip" onClick={() => props.deleteCategory(props.chipid)}/>
+      <img src={CloseChip} className="c-pointer" alt="Close chip" onClick={() => props.deleteCategory(props.chipid)} />
     </span>
   );
 }; 

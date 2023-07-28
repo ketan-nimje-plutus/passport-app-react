@@ -1,7 +1,7 @@
 import { getData, deleteData, postData } from "../../http/http.class";
 import { LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./user.act";
 
-export const getCustomers = (page, size, search) => {
+export const getUsers = (page, size, search) => {
     return dispatch => {
         let searchKey = (search !== undefined && search !== '') ? '&search=' + search : '';
         getData('get-user-data?ordering=-id&page_size=' + size + '&page=' + page + searchKey, "")
@@ -9,13 +9,14 @@ export const getCustomers = (page, size, search) => {
                 if (res.status) {
                     dispatch({
                         counts: res.count,
-                        customers: res.data,
+                        users: res.data,
                         type: LOAD_CUSTOMERS_SUCCESS,
                     });
                 } else {
                     dispatch({
                         type: LOAD_CUSTOMERS_ERROR,
                         error: res.data.detail,
+
                     });
                 }
             })

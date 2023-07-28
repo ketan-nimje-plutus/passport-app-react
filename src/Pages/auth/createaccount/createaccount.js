@@ -1,8 +1,8 @@
 import { ErrorMessage, Form, Formik } from "formik";
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { CustomButton } from "../../../component/button";
-import { Group, InputFormik, Label, FormikCheckBox } from "../../../component/formcomponent";
+import { Group, InputFormik, Label } from "../../../component/formcomponent";
 import * as Yup from "yup";
 // import AuthPlaceholder from "../../../assets/images/auth-placeholder.png";
 import { AuthHeader } from "../../../component/header/header";
@@ -26,7 +26,6 @@ const validationLogin = Yup.object({
   email: Yup.string().email("Email address is not valid.").required("Email address is required."),
   password: Yup.string().min(8, "8 characters must be required.").required("Password is required."),
   password_confirmation: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
-  terms: Yup.bool().oneOf([true], 'Accept Terms & Conditions is required').required('Accept Terms & Conditions is required')
 });
 
 class CreateAccount extends Component {
@@ -39,7 +38,6 @@ class CreateAccount extends Component {
       banner: false,
       loader: false
     };
-    this.handleChecked = this.handleChecked.bind(this);
   }
   renderBanner() {
     let { banner, errormsg } = this.state;
@@ -49,11 +47,7 @@ class CreateAccount extends Component {
     if (banner.status === false)
       return <AlertNotification variant="danger" errormessage={errormsg.email || errormsg.password || "failed"} />;
   }
-  handleChecked() {
-    // console.log('handle before',this.state.isChecked);
-    this.setState({ isChecked: !this.state.isChecked });
-    // console.log('handle after ',this.state.isChecked);
-  }
+
   render() {
     return (
       <div className="showroom-auth">
@@ -229,18 +223,7 @@ class CreateAccount extends Component {
                           </div>
                         )}
                       </Group>
-                      <Group className="field-group" controlId="login">
-                        <div className="d-flex align-items-center justify-content-start">
-                          <div className="d-flex align-items-center">
-                            <FormikCheckBox type="checkbox" name="terms" value={this.state.isChecked} />
-                            <h4
-                              className={`common-text c-pointer check-text mx-2 mb-0 ${touched.terms && errors.terms && "custom-error"}`}
-                            >
-                              I agree to the<span className="mx-1 bottom-line">terms and conditions</span>
-                            </h4>
-                          </div>
-                        </div>
-                      </Group>
+
                       {this.state.loader ? <Loader /> : null}
                       <Group className="mt-4" controlId="login">
                         <div className="d-grid gap-2">

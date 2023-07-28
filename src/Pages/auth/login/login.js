@@ -107,7 +107,6 @@ class Login extends Component {
                           Cookies.set("loggedIn", true, { expires: date, path: '/' });
                         }
 
-                        Cookies.remove("onBoardingStep");
                         this.props.history.push("/dashboard");
                       } else {
                         this.setState({
@@ -194,7 +193,7 @@ class Login extends Component {
                             <CheckBox type="checkbox" onChange={() => this.setState({ isChecked: !this.state.isChecked })} />
                             <span className="common-text mx-2">Keep me signed in</span>
                           </div>
-                          <span className="common-text border-bottom c-pointer" onClick={() => this.props.history.push("/reset-password")}>Forgot password?</span>
+                          {/* <span className="common-text border-bottom c-pointer" onClick={() => this.props.history.push("/reset-password")}>Forgot password?</span> */}
                         </div>
                       </Group>
                       {this.state.loader ? <Loader /> : null}

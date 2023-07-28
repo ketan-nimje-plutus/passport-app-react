@@ -1,5 +1,3 @@
-import { USER_ROLE } from "../constants/userRole";
-import { checkUserRole } from "./getLocalData";
 import moment from "moment";
 
 export const isNumber = (evt) => {
@@ -14,42 +12,16 @@ export const isPrice = (evt) => {
 
 export const setLoginStoreOwnerAndVendorDataToCLocalStorage = (data, url) => {
   data.token && localStorage.setItem("showroomAccess", data.token);
-  data.token && localStorage.setItem("showroomRefresh", data.token);
-  localStorage.setItem("showroom_user_details", JSON.stringify(data.user));
+  localStorage.setItem("user_details", JSON.stringify(data.user));
   return "";
 };
 
 export function redirectToAfterLogout() {
   let url = "/";
-  if (
-    [
-      // USER_ROLE.SUPER_ADMIN,
-      USER_ROLE.STORE_OWNER,
-      // USER_ROLE.STORE_STAFF,
-    ].includes(checkUserRole())
-  ) {
-    url = "/";
-  }
-
   setTimeout(() => {
-    let storeSettings = localStorage.getItem("storeSettings");
     localStorage.clear();
-    localStorage.setItem("storeSettings", storeSettings);
-    //<Redirect to={url} />;
     window.location = url;
   });
-}
-export function redirectToLogin() {
-  if (
-    [
-      // USER_ROLE.SUPER_ADMIN,
-      USER_ROLE.STORE_OWNER,
-      // USER_ROLE.STORE_STAFF,
-    ].includes(checkUserRole())
-  ) {
-    window.location = "/";
-    //<Redirect to="/portal/login" />;
-  }
 }
 
 export function createdOn(created_on, time = false) {

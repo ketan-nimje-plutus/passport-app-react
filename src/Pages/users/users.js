@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PageTitle } from "../../component/pagetitle/pagetitle";
 import CustomerTable from "./table";
 import { withRouter } from 'react-router-dom';
-import { getCustomers, deleteCustomer, bulkUsersDelete } from "./user.ctrl";
+import { getUsers, deleteCustomer, bulkUsersDelete } from "./user.ctrl";
 import { connect } from 'react-redux';
 import { PaginationComp } from "../../utils/pagination";
 import { AlertNotification } from "../../component/uicomponent";
@@ -43,7 +43,7 @@ class User extends Component {
         let { success, data } = await deleteCustomer(customerID);
         if (success) {
             this.setState({ banner: { 'status': true }, msg: data.message, FullWidthLoader: false });
-            this.props.getCustomers(this.state.page, this.state.pageSize, this.state.search);
+            this.props.getUsers(this.state.page, this.state.pageSize, this.state.search);
         } else {
             this.setState({ banner: { 'status': false }, msg: data.detail ?? data.message, FullWidthLoader: false });
         }
@@ -63,7 +63,7 @@ class User extends Component {
         });
         if (success) {
             this.setState({ banner: { 'status': true }, msg: message, FullWidthLoader: false });
-            this.props.getCustomers(this.state.page, this.state.pageSize, this.state.search);
+            this.props.getUsers(this.state.page, this.state.pageSize, this.state.search);
         } else {
             this.setState({ banner: { 'status': false }, msg: data.detail, FullWidthLoader: false });
         }
@@ -75,47 +75,44 @@ class User extends Component {
             });
         }, 3000);
     }
+
     updateSearchValue = (event) => {
         this.setState({
             page: 1,
             search: event.target.value
         }, () => {
-            //callback  
             this.setPage(1);
         });
     }
 
     setPageSize = (pageSizevalue) => {
         this.setState({ pageSize: pageSizevalue }, () => {
-            //callback
-            this.props.getCustomers(1, this.state.pageSize, this.state.search);
+            this.props.getUsers(1, this.state.pageSize, this.state.search);
         });
     }
 
     setPage = (pageValue) => {
         this.setState({ page: pageValue }, () => {
-            //callback
-            this.props.getCustomers(this.state.page, this.state.pageSize, this.state.search);
+            this.props.getUsers(this.state.page, this.state.pageSize, this.state.search);
         });
     }
     componentDidMount() {
-        this.setState({ FullWidthLoader: false });
 
-        this.props.getCustomers(this.state.page, this.state.pageSize, this.state.search);
+        this.props.getUsers(this.state.page, this.state.pageSize, this.state.search);
     }
     render() {
-        const { customers, loading, counts, error } = this.props;
+        const { users, loading, counts, error } = this.props;
         return (
-            <div className="customers">
+            <div className="users">
                 {this.state.FullWidthLoader || loading ? <FullWidthLoader /> : null}
                 {error && error !== '' ? <AlertNotification variant="danger" errormessage={error} /> : null}
                 {
-                    customers && customers.length >= 0 ?
+                    users && users.length >= 0 ?
                         <>
                             {this.renderBanner()}
                             <PageTitle title="Users" className="custom-button" add_button="true" onClick={() => this.props.history.push("/add-user")} buttonname="Add new" />
                             <CustomerTable
-                                loader={loading} customers={customers} checkBox={[]}
+                                loader={loading} users={users} checkBox={[]}
                                 onEdit={this.editHandler.bind(this)}
                                 onDelete={this.deleteHandler.bind(this)}
                                 onBulkDelete={this.bulkDeleteHandler.bind(this)}
@@ -132,13 +129,13 @@ class User extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        customers: state.customers.customers,
-        loading: state.customers.loading,
-        error: state.customers.error,
-        counts: state.customers.counts
+        users: state.users.users,
+        loading: state.users.loading,
+        error: state.users.error,
+        counts: state.users.counts
     };
 };
 const mapDispatchToProps = (dispatch) => {
-    return { getCustomers: (page, pageSize, search) => dispatch(getCustomers(page, pageSize, search)) };
+    return { getUsers: (page, pageSize, search) => dispatch(getUsers(page, pageSize, search)) };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(User)); 

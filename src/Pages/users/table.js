@@ -14,22 +14,23 @@ class CustomerTable extends Component {
         this.state = {
             checkBox: this.props.checkBox,
             openmodal: false,
-            deleteALLCustomers: false,
-            customerID: null
+            deleteALLUsers: false,
+            userID: null
         }
     }
-    onTdClick = (customer) => {
 
-        this.props.onEdit(customer);
+    onTdClick = (user) => {
+        this.props.onEdit(user);
     }
-    onTdDelete = (customerID) => {
+
+    onTdDelete = (userID) => {
         this.setState({ openmodal: false });
-        this.props.onDelete(customerID);
+        this.props.onDelete(userID);
     }
-    selectAll = (e) => {
 
+    selectAll = (e) => {
         if (e.target.checked) {
-            this.props.customers.forEach(x => {
+            this.props.users.forEach(x => {
                 if (this.state.checkBox.includes(x.id) === false) {
                     this.state.checkBox.push(x.id);
                 }
@@ -39,6 +40,7 @@ class CustomerTable extends Component {
             this.setState({ "checkBox": [] })
         }
     }
+
     onChkClick = (event) => {
         let newVal = event.target.value
         let stateVal = this.state.checkBox
@@ -47,34 +49,36 @@ class CustomerTable extends Component {
             : stateVal.length === 0
                 ? (stateVal = [])
                 : stateVal.splice(stateVal.indexOf(parseInt(newVal)), 1)
-
         this.setState({ checkBox: stateVal })
     }
-    deleteCustomers = () => {
-        this.setState({ deleteALLCustomers: false, "checkBox": [], })
+    deleteUsers = () => {
+        this.setState({ deleteALLUsers: false, "checkBox": [], })
         this.props.onBulkDelete(this.state.checkBox);
     }
 
-    toggleModal = (customerID) => {
-        this.setState({ openmodal: !this.state.openmodal, customerID: customerID });
+    toggleModal = (userID) => {
+        this.setState({ openmodal: !this.state.openmodal, userID: userID });
     }
+
     toggleDeleteModal = () => {
-        this.setState({ deleteALLCustomers: !this.state.deleteALLCustomers });
+        this.setState({ deleteALLUsers: !this.state.deleteALLUsers });
     }
+
     setSearchAction = debounceWait((e) => this.searchCategory(e));
 
     searchCategory = async (e) => {
         this.props.onChange(e)
     }
+
     render() {
-        const { loader, customers } = this.props;
+        const { loader, users } = this.props;
         return (
-            <div className="customers-table">
+            <div className="users-table">
                 <div className="table-wrapper">
                     <div className="search-data">
                         <div className="position-relative">
                             <img src={SearchIcon} alt="Icon" />
-                            <InputField placeholder="Search customers" className="custom-input" name="search" id="search" onChange={(e) => this.setSearchAction(e)} />
+                            <InputField placeholder="Search users" className="custom-input" name="search" id="search" onChange={(e) => this.setSearchAction(e)} />
                         </div>
                     </div>
                     {
@@ -84,7 +88,7 @@ class CustomerTable extends Component {
                                     {
                                         this.state.checkBox.length > 0 ?
                                             <tr className="fix-header position-relative">
-                                                <th style={{ width: '60px' }} className="text-center sticky-column">
+                                                <th style={{ width: '60px' }} className="text-start sticky-column">
                                                     <CheckBox type="checkbox" onChange={(e) => this.selectAll(e)} />
                                                 </th>
                                                 <th >
@@ -95,11 +99,10 @@ class CustomerTable extends Component {
                                                 </th>
                                                 <th style={{ width: '32%' }}></th>
                                                 <th style={{ width: '32%' }} className="text-center"></th>
-                                                <th style={{ width: '60px' }}></th>
                                             </tr>
                                             :
                                             <tr>
-                                                <th style={{ width: '60px' }} className="text-center">
+                                                <th style={{ width: '60px' }} className="text-start">
                                                     <CheckBox type="checkbox" onChange={(e) => this.selectAll(e)} />
                                                 </th>
                                                 <th style={{ width: '32%' }}>Name</th>
@@ -110,17 +113,17 @@ class CustomerTable extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        customers && customers.length > 0 ?
-                                            customers.map((customerData, idx) => (
+                                        users && users.length > 0 ?
+                                            users.map((userData, idx) => (
                                                 <TableData
                                                     key={idx}
-                                                    id={customerData.id}
-                                                    name={customerData.name}
-                                                    email={customerData.email}
-                                                    checked={(this.state.checkBox.indexOf(customerData.id) !== -1) ? true : null}
-                                                    onClick={() => this.onTdClick(customerData)}
+                                                    id={userData.id}
+                                                    name={userData.name}
+                                                    email={userData.email}
+                                                    checked={(this.state.checkBox.indexOf(userData.id) !== -1) ? true : null}
+                                                    onClick={() => this.onTdClick(userData)}
                                                     onChange={(e) => this.onChkClick(e)}
-                                                    onDelete={() => this.toggleModal(customerData.id)}
+                                                    onDelete={() => this.toggleModal(userData.id)}
                                                 />
                                             ))
                                             :
@@ -134,7 +137,7 @@ class CustomerTable extends Component {
                     className="sr-modal"
                     show={this.state.openmodal}
                     onHide={this.toggleModal.bind(this, this.state.openmodal)}
-                    onSave={this.onTdDelete.bind(this, this.state.customerID)}
+                    onSave={this.onTdDelete.bind(this, this.state.userID)}
                     modalheading="Delete Customer?"
                     removebutton="Delete"
                     cancelbutton="Cancel"
@@ -145,9 +148,9 @@ class CustomerTable extends Component {
                 </ShowroomModal>
                 <ShowroomModal
                     className="sr-modal"
-                    show={this.state.deleteALLCustomers}
-                    onHide={this.toggleDeleteModal.bind(this, this.state.deleteALLCustomers)}
-                    onSave={this.deleteCustomers.bind(this)}
+                    show={this.state.deleteALLUsers}
+                    onHide={this.toggleDeleteModal.bind(this, this.state.deleteALLUsers)}
+                    onSave={this.deleteUsers.bind(this)}
                     modalheading={this.state.checkBox.length > 1 ? "Delete Users?" : "Delete user?"}
                     removebutton="Delete"
                     cancelbutton="Cancel"
@@ -179,7 +182,7 @@ export function TableData({
 }) {
     return (
         <tr>
-            <td className="text-center">
+            <td className="text-start">
                 <CheckBox type="checkbox" className="chkbox" value={id} onChange={onChange} data-id={id} checked={checked} />
             </td>
             <td onClick={onClick}>

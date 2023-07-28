@@ -1,25 +1,26 @@
 import { LOAD_CUSTOMERS_LOADING, LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./user.act";
 
 const initialState = {
-    customers: null,
+    users: null,
     loading: false,
     error: '',
     counts: 0
 };
 
-const customrsRed = (state = initialState, action) => {
+const usersRed = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_CUSTOMERS_LOADING: {
             return {
                 ...state,
                 loading: true,
                 error: ''
+
             };
         }
         case LOAD_CUSTOMERS_SUCCESS: {
             return {
                 ...state,
-                customers: action.customers,
+                users: action.users,
                 counts: action.counts,
                 error: '',
                 loading: false
@@ -38,4 +39,4 @@ const customrsRed = (state = initialState, action) => {
     }
 };
 
-export default customrsRed;
+export default usersRed;

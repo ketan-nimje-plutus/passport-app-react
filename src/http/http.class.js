@@ -1,7 +1,5 @@
 import decode from "jwt-decode";
 import { redirectToAfterLogout } from "../utils/basic";
-//export const HOST = `api-app.reshyne.com`;
-export const HOST = process.env.REACT_APP_API_URL;
 
 export const BASE_URL = `http://127.0.0.1:8000/api/`;
 
