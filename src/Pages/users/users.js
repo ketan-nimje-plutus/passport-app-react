@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PageTitle } from "../../component/pagetitle/pagetitle";
 import CustomerTable from "./table";
 import { withRouter } from 'react-router-dom';
-import { getCustomers, deleteCustomer, bulkCustomerDelete } from "./user.ctrl";
+import { getCustomers, deleteCustomer, bulkUsersDelete } from "./user.ctrl";
 import { connect } from 'react-redux';
 import { PaginationComp } from "../../utils/pagination";
 import { AlertNotification } from "../../component/uicomponent";
@@ -58,11 +58,11 @@ class User extends Component {
 
     bulkDeleteHandler = async (ids) => {
         this.setState({ FullWidthLoader: false });
-        let { success, data } = await bulkCustomerDelete({
-            "customer_ids": ids
+        let { success, message, data } = await bulkUsersDelete({
+            "users_id": ids
         });
         if (success) {
-            this.setState({ banner: { 'status': true }, msg: data.message, FullWidthLoader: false });
+            this.setState({ banner: { 'status': true }, msg: message, FullWidthLoader: false });
             this.props.getCustomers(this.state.page, this.state.pageSize, this.state.search);
         } else {
             this.setState({ banner: { 'status': false }, msg: data.detail, FullWidthLoader: false });

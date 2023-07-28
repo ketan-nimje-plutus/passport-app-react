@@ -45,9 +45,6 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log(StoreOwnerRoutes);
-    console.log('loggedIn', Cookies.get('loggedIn'));
-    console.log('isKeepLogin', Cookies.get('isKeepLogin'))
     return (
       <Router>
         <div className="full-width-wrapper">

@@ -41,10 +41,10 @@ export const deleteCustomer = async (customerID) => {
     }
 };
 
-export const bulkCustomerDelete = async (payload) => {
-    let res = await postData('customers-bulk-delete', payload);
-    if (res.code === 200) {
-        return { success: true, data: res.data };
+export const bulkUsersDelete = async (payload) => {
+    let res = await postData('user-bulk-delete', payload);
+    if (res.status) {
+        return { success: true, message: res.message, data: res.data };
     } else {
         return { success: false, data: res.data };
     }
