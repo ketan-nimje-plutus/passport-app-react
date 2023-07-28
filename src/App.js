@@ -1,25 +1,87 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Sidebar from "../src/component/sidebar/sidebar";
+import "./App.css";
+import "../src/assets/css/style.scss";
+import "../src/assets/css/media.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Cookies from "js-cookie";
+import { Redirect } from "react-router-dom";
+import { StoreOwnerRoutes } from "./routes/storeowner.route";
+import StoreHeader from "./component/header/header"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const DefaultRoutes = (props) => {
+  if ((Cookies.get("loggedIn") === undefined) && (props.auth)) {
+    return <Redirect to="/" />;
+  }
+
+  if (props.defaultRoutes) {
+    return (
+      <div className="page-wrapper">
+        <div className="d-flex">
+          <Sidebar sideBar={props.sideBarActive} onClick={props.sidebarToggle} />
+          <div className="section-wrapper">
+            <StoreHeader onClick={props.sidebarToggle} />
+            <props.component />
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return <props.component />;
+  }
+};
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sideBarActive: false,
+    }
+  }
+  sidebarToggle = () => {
+    // console.log("sidebarToggle", this.state.sideBarActive)
+    this.setState({ sideBarActive: !this.state.sideBarActive });
+  }
+
+  render() {
+    // console.log(StoreOwnerRoutes);
+    console.log('loggedIn', Cookies.get('loggedIn'));
+    console.log('isKeepLogin', Cookies.get('isKeepLogin'))
+    return (
+      <Router>
+        <div className="full-width-wrapper">
+          <Switch>
+            {StoreOwnerRoutes.map((route, index) => {
+              if (route.path === "/") {
+                if (Cookies.get("loggedIn") === undefined) {
+                  return (
+                    <Route key={index} exact={route.exact} path={route.path}>
+                      <route.component />
+                    </Route>
+                  );
+                } else {
+                  return <Redirect to="/dashboard" key={index} />;
+                }
+              } else {
+                return (
+                  <Route key={index} exact={route.exact} path={route.path}>
+                    <DefaultRoutes
+                      component={route.component}
+                      defaultRoutes={route.defaultRoutes}
+                      auth={route.auth}
+                      sideBarActive={this.state.sideBarActive}
+                      sidebarToggle={() => this.sidebarToggle()}
+                    />
+                  </Route>
+                );
+              }
+            })}
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

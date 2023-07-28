@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>AFDD9979-3054-4161-93CC-52FFA926BDA5@2x</title>
+    <defs> 
+        <filter x="-22.9%" y="-18.8%" width="145.9%" height="154.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="40" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="36" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.147801578   0 0 0 0 0.149104754   0 0 0 0 0.18602808  0 0 0 0.12 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-54.5%" y="-54.5%" width="209.1%" height="209.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Customer" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="811---Account---Profile---Change-password---02" transform="translate(-945.000000, -332.000000)"> 
+            <g id="Group-6"> 
+                <g id="Group-15" transform="translate(441.000000, 206.000000)">
+                    <g id="Rectangle" transform="translate(0.000000, 1.000000)">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use> 
+                    </g>
+                    <g id="Element-/-Form-Field-/-Stacked-Copy-2" transform="translate(20.000000, 88.000000)">
+                        <g id="Icon24/Blank" filter="url(#filter-3)" transform="translate(484.000000, 45.000000)"></g>
+                        <g id="Input/Box/Active" transform="translate(0.000000, 28.000000)">
+                            <g id="Icon24/Blank" transform="translate(484.000000, 10.000000)" fill="#DBDEDF">
+                                <path d="M7.3143,15.7617 L9.0013,14.0887 C8.6073,13.5057 8.3963,12.8207 8.3963,12.1017 C8.3953,11.1437 8.7713,10.2437 9.4543,9.5677 C10.6893,8.3417 12.6043,8.1967 14.0043,9.1277 L15.5523,7.5927 C14.3593,6.8247 13.1453,6.4007 12.0013,6.4007 C9.3403,6.4007 6.2243,8.7067 4.4233,12.0087 C4.3933,12.0647 4.3933,12.1377 4.4243,12.1957 C5.1673,13.5557 6.1853,14.7927 7.3143,15.7617 M10.0333,13.0657 L12.9703,10.1537 C12.1453,9.7527 11.1233,9.8827 10.4403,10.5617 C10.0243,10.9727 9.7953,11.5197 9.7953,12.1017 C9.7953,12.4437 9.8833,12.7687 10.0333,13.0657 M10.4433,14.6317 L6.0383,18.9987 C5.9013,19.1347 5.7223,19.2017 5.5443,19.2017 C5.3653,19.2017 5.1843,19.1327 5.0473,18.9947 C4.7753,18.7197 4.7773,18.2767 5.0513,18.0047 L6.3183,16.7487 C5.0963,15.6807 3.9993,14.3377 3.1953,12.8647 C2.9343,12.3857 2.9353,11.8157 3.1953,11.3387 C4.9153,8.1837 8.3053,4.9997 12.0013,4.9997 C13.5033,4.9997 15.0763,5.5457 16.5793,6.5747 L17.9623,5.2027 C18.2383,4.9307 18.6813,4.9327 18.9533,5.2067 C19.2253,5.4817 19.2233,5.9247 18.9493,6.1967 L14.5543,10.5537 C14.5533,10.5547 14.5533,10.5557 14.5523,10.5567 C14.5513,10.5577 14.5503,10.5577 14.5493,10.5587 L10.4453,14.6287 C10.4453,14.6297 10.4443,14.6297 10.4443,14.6307 C10.4433,14.6307 10.4433,14.6307 10.4433,14.6317 M20.8063,12.8657 C20.8063,12.8657 20.8053,12.8657 20.8043,12.8667 C19.0833,16.0197 15.6943,19.2017 12.0013,19.2017 C11.1653,19.2017 10.3033,19.0337 9.4413,18.7037 C9.0803,18.5657 8.8993,18.1607 9.0383,17.7997 C9.1753,17.4397 9.5813,17.2597 9.9413,17.3967 C10.6443,17.6657 11.3363,17.8017 12.0013,17.8017 C14.6603,17.8017 17.7763,15.4957 19.5783,12.1937 C19.6093,12.1367 19.6093,12.0667 19.5793,12.0107 C19.1503,11.2247 18.6193,10.4627 18.0003,9.7417 C17.7473,9.4487 17.7803,9.0067 18.0743,8.7547 C18.3653,8.5027 18.8083,8.5337 19.0603,8.8287 C19.7453,9.6237 20.3323,10.4687 20.8063,11.3387 C21.0683,11.8147 21.0683,12.3867 20.8063,12.8657" id="Fill-1"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
