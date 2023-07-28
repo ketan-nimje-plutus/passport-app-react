@@ -1,4 +1,4 @@
-import { getData, deleteData, postData, putData } from "../../http/http.class";
+import { getData, deleteData, postData } from "../../http/http.class";
 import { LOAD_CUSTOMERS_SUCCESS, LOAD_CUSTOMERS_ERROR } from "./user.act";
 
 export const getCustomers = (page, size, search) => {

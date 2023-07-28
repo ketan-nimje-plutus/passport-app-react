@@ -1,6 +1,6 @@
 
 import User from "../Pages/users/users";
-import Dashboard from "../Pages/overview/Dashboard";
+import Dashboard from "../Pages/dashboard/Dashboard";
 import Login from "../Pages/auth/login/login";
 import CreateAccount from "../Pages/auth/createaccount/createaccount";
 import AddUser from "../Pages/users/adduser";

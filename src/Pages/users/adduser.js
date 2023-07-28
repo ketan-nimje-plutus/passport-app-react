@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import { InnerPageTitle } from "../../component/pagetitle/innerpagetitle";
 import { Container, Row, Col } from "react-bootstrap";
 import { GrayBorderBox, AlertNotification } from "../../component/uicomponent";
-import { FormikControl, Group, InputFormik, Label, } from "../../component/formcomponent";
-import IconDropDown from "../../assets/images/icon_dropdown.svg";
+import { Group, InputFormik, Label, } from "../../component/formcomponent";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CustomButton } from "../../component/button";
 import { saveUserData } from "./user.ctrl";
-import { isPrice } from "../../utils/basic";
 
 import ViewDisabled from "../../assets/images/ViewDisabled@2x.svg";
 import hideDisabled from "../../assets/images/eye-View@2x.svg";
@@ -54,22 +52,11 @@ class AddUser extends Component {
     if (banner.status === false)
       return <AlertNotification variant="danger" errormessage={msg} />;
   }
-
   discardData = () => {
     this.props.history.push("/users")
   }
 
-  componentDidMount = async () => {
-  }
-
   render() {
-    const initialValues = {
-      name: '',
-      description: '',
-      price: '',
-      status: 'Draft',
-    }
-
     return (
       <>
         <div className="items-action">
